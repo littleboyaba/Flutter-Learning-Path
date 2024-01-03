@@ -1,4 +1,5 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -6,11 +7,9 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: "Todo App",
       home: HomeActivity(),
     );
@@ -18,64 +17,130 @@ class MyApp extends StatelessWidget {
 }
 
 class HomeActivity extends StatelessWidget {
-  const HomeActivity({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
       appBar: AppBar(
-        backgroundColor: Colors.blue,
-        elevation: 7,
-        leading: Icon(
-          Icons.home,
-          color: Colors.black,
-          size: 28,
-        ),
-        title: Text(
-          "Home",
-          style: TextStyle(color: Colors.black),
-        ),
+        title: Text("Home"),
+        elevation: 5,
       ),
-      /*
-      body: Center(
-        child: Text(
-          "1. Hello flutter, We are going to flutter course"
-          "2. Hello flutter, We are going to flutter course"
-          "3. Hello flutter, We are going to flutter course"
-          "4. Hello flutter, We are going to flutter course"
-          "5. Hello flutter, We are going to flutter course"
-          "6. Hello flutter, We are going to flutter course"
-          "7. Hello flutter, We are going to flutter course"
-          "8. Hello flutter, We are going to flutter course"
-          "9. Hello flutter, We are going to flutter course"
-          "10. Hello flutter, We are going to flutter course",
-          textAlign: TextAlign.center,
-          maxLines: 5,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 32,
-            fontWeight: FontWeight.w300,
-            decoration: TextDecoration.underline,
-            wordSpacing: 5,
-            letterSpacing: 3,
-            overflow: TextOverflow.ellipsis,
+      // body: Column(
+      //   children: [
+      //     Text("Hello"),
+      //     Text("World"),
+      //   ],
+      // ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          // Horizontally arrange
+          Text("Hello"),
+          Text("World"),
+          Text("Flutter"),
+          Image.asset(
+            "Asset/img/computer_desktop.jpg",
+            width: 60,
           ),
-        ),
-      ),
-      */
-      body: Center(
-        // child: Image.network(
-        //     "https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg?auto=compress&cs=tinysrgb&w=600",
-        // ),
-        child: Image.asset(
-          "Asset/img/computer_desktop.jpg",
-          height: 600,
-          width: 250,
-          fit: BoxFit.scaleDown,
-          //color: Colors.red,
-          repeat: ImageRepeat.repeat,
-        ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text("row 1st born"),
+              Text("row 1st born"),
+              Text("row 1st born"),
+              Text("row 1st born"),
+              Text("row 1st born"),
+            ],
+          ),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text("3rd Column"),
+              Text("3rd Column"),
+              Text("3rd Column"),
+              Text("3rd Column"),
+            ],
+          ),
+          RichText(
+            text: TextSpan(
+              text: 'Hello ',
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 24,
+              ),
+              children: [
+                TextSpan(
+                  text: 'from ',
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontSize: 20,
+                  ),
+                ),
+                TextSpan(
+                  text: 'flutter',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 28,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          RichText(
+            text: TextSpan(
+              text: 'Please accept the ',
+              style: TextStyle(color: Colors.blue, fontSize: 18),
+              children: [
+                TextSpan(
+                  text: 'TERM and CONDITION ',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+                TextSpan(
+                  text: 'to use the App.',
+                ),
+              ],
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              //showAboutDialog(context: context);
+              // showModalBottomSheet(
+              //     context: context,
+              //     builder: (context) {
+              //       return AlertDialog(
+              //         title: Text("Message"),
+              //         content: Text("Hello, welcome to our app"),
+              //         actions: [
+              //           ElevatedButton(
+              //             onPressed: () {},
+              //             child: Text('Cancel'),
+              //           ),
+              //         ],
+              //       );
+              //     });
+              showModalBottomSheet(
+                  isDismissible: false,
+                  backgroundColor: Colors.green,
+                  barrierColor: Colors.blue,
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Column(
+                      //mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text("Message"),
+                        Text("Hello world"),
+                      ],
+                    );
+                  });
+            },
+            child: Text("Tab Here"),
+          ),
+        ],
       ),
     );
   }
